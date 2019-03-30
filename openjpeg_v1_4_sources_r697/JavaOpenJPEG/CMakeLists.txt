@@ -25,16 +25,16 @@ INCLUDE_DIRECTORIES(
   )
 
 # Loop over all executables:
-FOREACH(exe j2k_to_image image_to_j2k)
-  ADD_EXECUTABLE(${exe} ${exe}.c ${common_SRCS})
-  TARGET_LINK_LIBRARIES(${exe} ${OPJ_PREFIX}openjpeg ${TIFF_LIBRARIES}
-	${PNG_LIBRARIES} ${ZLIB_LIBRARY} ${LCMS_LIB})
-  # On unix you need to link to the math library:
-  IF(UNIX)
-    TARGET_LINK_LIBRARIES(${exe} -lm)
-  ENDIF(UNIX)
-  # Install exe
-  INSTALL_TARGETS(/bin/ ${exe})
-ENDFOREACH(exe)
+#FOREACH(exe j2k_to_image image_to_j2k)
+#  ADD_EXECUTABLE(${exe} ${exe}.c ${common_SRCS})
+#  TARGET_LINK_LIBRARIES(${exe} ${OPJ_PREFIX}openjpeg ${TIFF_LIBRARIES}
+#	${PNG_LIBRARIES} ${ZLIB_LIBRARY} ${LCMS_LIB})
+#  # On unix you need to link to the math library:
+#  IF(UNIX)
+#    TARGET_LINK_LIBRARIES(${exe} -lm)
+#  ENDIF(UNIX)
+#  # Install exe
+#  INSTALL_TARGETS(/bin/ ${exe})
+#ENDFOREACH(exe)
 
 

@@ -38,9 +38,9 @@ pushd "$OPENJPEG_SOURCE_DIR"
             load_vsvars
 
             if [ "${AUTOBUILD_WIN_VSPLATFORM}" = "Win32" ] ; then
-                cmake . -G"Visual Studio 12" -DCMAKE_INSTALL_PREFIX=$stage
+                cmake . -G"Visual Studio 15" -DCMAKE_INSTALL_PREFIX=$stage
             else
-                cmake . -G"Visual Studio 12 Win64" -DCMAKE_INSTALL_PREFIX=$stage -DND_WIN64_BUILD=On
+                cmake . -G"Visual Studio 15 Win64" -DCMAKE_INSTALL_PREFIX=$stage -DND_WIN64_BUILD=On
             fi
 
             build_sln "OPENJPEG.sln" "Release|$AUTOBUILD_WIN_VSPLATFORM"

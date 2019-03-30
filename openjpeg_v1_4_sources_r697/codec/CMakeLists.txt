@@ -37,28 +37,28 @@ IF(WIN32)
 ENDIF(WIN32)
 
 # Loop over all executables:
-FOREACH(exe j2k_to_image image_to_j2k j2k_dump)
-  ADD_EXECUTABLE(${exe} ${exe}.c ${common_SRCS})
-  TARGET_LINK_LIBRARIES(${exe} ${OPENJPEG_LIBRARY_NAME} ${LCMS_LIB})
-  IF(PNG_FOUND)
-    TARGET_LINK_LIBRARIES(${exe} ${PNG_LIBRARIES})
-  ENDIF(PNG_FOUND)
-  IF(TIFF_FOUND)
-    TARGET_LINK_LIBRARIES(${exe} ${TIFF_LIBRARIES})
-  ENDIF(TIFF_FOUND)
-  ADD_TEST(${exe} ${EXECUTABLE_OUTPUT_PATH}/${exe})
-  # calling those exe without option will make them fail always:
-  SET_TESTS_PROPERTIES(${exe} PROPERTIES WILL_FAIL TRUE)
-  # On unix you need to link to the math library:
-  IF(UNIX)
-    TARGET_LINK_LIBRARIES(${exe} m)
-  ENDIF(UNIX)
-  # Install exe
-  INSTALL(TARGETS ${exe}
-    EXPORT OpenJPEGTargets
-    DESTINATION ${OPENJPEG_INSTALL_BIN_DIR} COMPONENT Applications
-  )
-ENDFOREACH(exe)
+# FOREACH(exe j2k_to_image image_to_j2k j2k_dump)
+  # ADD_EXECUTABLE(${exe} ${exe}.c ${common_SRCS})
+  # TARGET_LINK_LIBRARIES(${exe} ${OPENJPEG_LIBRARY_NAME} ${LCMS_LIB})
+  # IF(PNG_FOUND)
+    # TARGET_LINK_LIBRARIES(${exe} ${PNG_LIBRARIES})
+  # ENDIF(PNG_FOUND)
+  # IF(TIFF_FOUND)
+    # TARGET_LINK_LIBRARIES(${exe} ${TIFF_LIBRARIES})
+  # ENDIF(TIFF_FOUND)
+  # ADD_TEST(${exe} ${EXECUTABLE_OUTPUT_PATH}/${exe})
+  # # calling those exe without option will make them fail always:
+  # SET_TESTS_PROPERTIES(${exe} PROPERTIES WILL_FAIL TRUE)
+  # # On unix you need to link to the math library:
+  # IF(UNIX)
+    # TARGET_LINK_LIBRARIES(${exe} m)
+  # ENDIF(UNIX)
+  # # Install exe
+  # INSTALL(TARGETS ${exe}
+    # EXPORT OpenJPEGTargets
+    # DESTINATION ${OPENJPEG_INSTALL_BIN_DIR} COMPONENT Applications
+  # )
+# ENDFOREACH(exe)
 
 # Install man pages
 INSTALL(
