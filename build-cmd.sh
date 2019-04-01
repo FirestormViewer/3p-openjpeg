@@ -37,18 +37,13 @@ pushd "$OPENJPEG_SOURCE_DIR"
         windows*)
             load_vsvars
 
-            if [ "${AUTOBUILD_WIN_VSPLATFORM}" = "Win32" ] ; then
-                cmake . -G"Visual Studio 15" -DCMAKE_INSTALL_PREFIX=$stage
-            else
-                cmake . -G"Visual Studio 15 Win64" -DCMAKE_INSTALL_PREFIX=$stage -DND_WIN64_BUILD=On
-            fi
+            cmake . -G "${AUTOBUILD_WIN_CMAKE_GEN}" -DCMAKE_INSTALL_PREFIX=$stage
+            build_sln "OPENJPEG.sln" "Release|$AUTOBUILD_WIN_VSPLATFORM" openjpeg
+            build_sln "OPENJPEG.sln" "Debug|$AUTOBUILD_WIN_VSPLATFORM" openjpeg
 
-            build_sln "OPENJPEG.sln" "Release|$AUTOBUILD_WIN_VSPLATFORM"
-            build_sln "OPENJPEG.sln" "Debug|$AUTOBUILD_WIN_VSPLATFORM"
-
-            
             mkdir -p "$stage/lib/debug"
             mkdir -p "$stage/lib/release"
+
             cp bin/Release/openjpeg{.dll,.lib} "$stage/lib/release"
             cp bin/Debug/openjpeg.dll "$stage/lib/debug/openjpegd.dll"
             cp bin/Debug/openjpeg.lib "$stage/lib/debug/openjpegd.lib"
